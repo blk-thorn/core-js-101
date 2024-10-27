@@ -35,8 +35,12 @@ function getRectangleArea(/* width, height */) {
  *   3.14 => 19.729201864543903
  *   0    => 0
  */
-function getCircleCircumference(/* radius */) {
-  throw new Error('Not implemented');
+function getCircleCircumference(radius) {
+  if (typeof radius !== 'number') {
+    throw new Error('Not implemented');
+  }
+  const pi = Math.PI;
+  return 2 * pi * radius;
 }
 
 /**
@@ -51,8 +55,11 @@ function getCircleCircumference(/* radius */) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(/* value1, value2 */) {
-  throw new Error('Not implemented');
+function getAverage(value1, value2) {
+  if (typeof value1 !== 'number' || typeof value2 !== 'number') {
+    throw new Error('Not implemented');
+  }
+  return (value1 / 2) + (value2 / 2);
 }
 
 /**
@@ -141,8 +148,11 @@ function getLastDigit(/* value */) {
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-function parseNumberFromString(/* value */) {
-  throw new Error('Not implemented');
+function parseNumberFromString(value) {
+  if (typeof value !== 'string') {
+    throw new Error('Not implemented');
+  }
+  return +value;
 }
 
 /**
@@ -180,7 +190,11 @@ function getParallelepipedDiagonal(/* a, b, c */) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
+function roundToPowerOfTen(num, pow) {
+  if (typeof num === 'number' && typeof pow === 'number') {
+    const factor = 10 ** pow;
+    return Math.round(num / factor) * factor;
+  }
   throw new Error('Not implemented');
 }
 
@@ -201,8 +215,25 @@ function roundToPowerOfTen(/* num, pow */) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  if (n < 2) {
+    return false;
+  }
+
+  if (n === 2) {
+    return true;
+  }
+
+  if (n % 2 === 0) {
+    return false;
+  }
+  const limit = Math.sqrt(n);
+  for (let i = 3; i <= limit; i += 2) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /**
